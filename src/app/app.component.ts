@@ -11,5 +11,5 @@ import { FooterComponent } from "./footer/footer.component";
     imports: [RouterOutlet, HeaderComponent, FooterComponent]
 })
 export class AppComponent {
-  title = 'books-library';
+
 }

@@ -20,6 +20,10 @@
   display: none;
 }
 
+nav ul li a {
+  font-size: 24px;
+}
+
 @media (max-width: 800px) {
   .menu {
     flex-direction: column;
@@ -49,6 +53,8 @@
   .close-menu,
   .open-menu {
     display: block;
+    font-size: 20px;
+    font-weight: 500;
   }
 
   #check:checked ~ .menu {
