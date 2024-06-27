@@ -15,7 +15,7 @@
     class="w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5">
 
 <div *ngFor="let card of bookList.works">
-    <app-card [title]="card.title" [authors]="card.authors" [publicationYear]="card.first_publish_year" [cover_id]="card.cover_id"/>
+    <app-card [key]="card.key" [title]="card.title" [authors]="card.authors" [publicationYear]="card.first_publish_year" [cover_id]="card.cover_id"/>
 </div>
 
 </section>

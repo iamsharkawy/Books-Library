@@ -6,19 +6,19 @@
 
     <!--   ✅ Product card 1 - Starts Here 👇 -->
     <div class="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
-        <a href="">
+        <a [routerLink]="['details', key]">
             <img *ngIf="getCoverImageUrl(cover_id)" [src]="getCoverImageUrl(cover_id)"
                 alt="Product" class="h-80 w-72 object-cover rounded-t-xl" />
                 <img *ngIf="!getCoverImageUrl(cover_id)" src="assets/placeholder.jpg"
                 alt="No Cover image available" class="h-80 w-72 object-cover rounded-t-xl" />
         </a>
         <div class="px-4 py-3 w-72">
-            <span class="mr-3 uppercase font-semibold"><a href="">{{ getAuthorsNames(authors) }}</a></span>
-            <p class="text-gray-500 mr-3 uppercase text-sm">{{publicationYear}}</p>
-            <p class="text-xl font-bold text-black truncate block capitalize"><a href="">{{ title }}</a></p>
+            <span class="mr-3 uppercase truncate block font-semibold"><a [routerLink]="['author']">{{ getAuthorsNames(authors) }}</a></span>
+            <p class="text-gray-500 mr-3 uppercase text-base">{{publicationYear}}</p>
+            <p class="text-xl font-bold text-black truncate block capitalize"><a [routerLink]="['details']">{{ title }}</a></p>
             <div class="flex items-center">
-                <p class="text-lg font-semibold text-black cursor-auto my-3"><a href="">More</a></p>
-                <div class="ml-auto font-semibold"><a href="">Wish-List</a></div>
+                <p class="text-lg font-semibold text-black cursor-auto my-3"><a [routerLink]="['details', key]" >More</a></p>
+                <div class="ml-auto font-semibold"><a [routerLink]="['wish-list']">Wish-List</a></div>
             </div>
         </div>
         </div>

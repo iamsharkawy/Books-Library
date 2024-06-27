@@ -1,10 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, } from '@angular/core';
 import { NgIf } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-card',
   standalone: true,
-  imports: [NgIf],
+  imports: [NgIf, RouterLink],
   templateUrl: './card.component.html',
   styleUrl: './card.component.scss'
 })
@@ -13,6 +14,7 @@ export class CardComponent{
   @Input() cover_id!: string
   @Input() publicationYear!: Number
   @Input() title!: string
+  @Input() key!: any
 
 
   getCoverImageUrl(cover_id: string): string {

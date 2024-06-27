@@ -1,21 +1,46 @@
-<app-header/>
-<article>
-    <img class="listing-photo" [src]=""
-      alt="Exterior photo of "/>
-    <section class="listing-description">
-      <h2 class="listing-heading">name</h2>
-      <p class="listing-location">city</p>
-    </section>
-    <section class="listing-features">
-      <h2 class="section-heading">About this housing location</h2>
-      <ul>
-        <li>Units available: </li>
-        <li>Does this location have wifi: </li>
-        <li>Does this location have laundry: </li>
-      </ul>
-    </section>
-    <section class="listing-apply">
-      <h2 class="section-heading">Apply now to live here</h2>
-    </section>
-  </article>
-  <app-footer/>
+<!-- details.component.html -->
+<p class="key">details comp {{ bookKey }}</p>
+
+<article *ngIf="!isLoading">
+  <img
+    *ngIf="bookDetails.covers && bookDetails.covers.length > 0 && getCoverImageUrl(bookDetails?.covers[0])"
+    class="cover-photo"
+    [src]="getCoverImageUrl(bookDetails.covers[0])"
+    alt="cover photo of {{ bookDetails.title }}"
+  />
+  <img
+    *ngIf="!bookDetails.covers || bookDetails?.covers?.length == 0"
+    class="cover-photo"
+    src="assets/placeholder.jpg"
+    alt="cover photo of {{ bookDetails.title }}"
+  />
+  <section>
+    <h2>{{ bookDetails.title }}</h2>
+  </section>
+  <section>
+    <p class="text-gray-500 mr-3 uppercase text-base">{{bookDetails.first_publish_date}}</p>
+    <div *ngFor="let author of authors">
+      <a [routerLink]="['/authors', author.key.replace('/authors/', '')]">{{author.name}}</a>
+    </div>
+    <!-- <p>Authors: {{ authors.join(', ') }}</p> -->
+    <p>Editions Count: {{ editionDetails.length }}</p>
+    @if(bookDetails && bookDetails.number_of_pages) {
+      <p>
+        No. of Pages: {{ bookDetails.number_of_pages }}
+      </p>
+    }
+    @else if(editionDetails[0] && editionDetails[0]?.number_of_pages) {
+      <p>
+        No. of Pages: {{ editionDetails[0].number_of_pages }}
+      </p>
+    }
+
+  </section>
+  <section>
+    <button type="button">Add / Remove Wishlist</button>
+  </section>
+</article>
+
+<div *ngIf="isLoading">Loading book details...</div>
+
+<div *ngIf="error">Error: {{ error.message }}</div>
