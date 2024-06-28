@@ -1,4 +1,17 @@
-<section>
-    <label for="search">Search For Your Book</label>
-    <input type="text" id="search" placeholder="search">
-</section>
+
+<form class="flex mt-40 justify-center flex-col md:flex-row gap-3">
+    <div class="flex">
+        <input type="text" placeholder="Search for the book you like"
+			class="w-full md:w-96 px-3 h-12 rounded-l border-2 border-black focus:outline-none focus:border-black"
+			>
+        <button type="submit" class="bg-black text-white rounded-r px-2 md:px-3 py-0 md:py-1">Search</button>
+    </div>
+    <select title="Categories" id="pricingType" class=" h-12 border-2 border-black focus:outline-none focus:border-black text-black rounded px-2 md:px-3 py-0 md:py-1 tracking-wider">
+		<option value="categories" selected="">Categories</option>
+		<option value="title">Title</option>
+		<option value="subject">Subject</option>
+		<option value="author">Author</option>
+	</select>
+</form>
+
+<app-home/>

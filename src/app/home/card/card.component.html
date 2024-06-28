@@ -1,4 +1,4 @@
-<!-- source: https://github.com/mfg888/Responsive-Tailwind-CSS-Grid/blob/main/index.html -->
+
 
 
 
@@ -13,7 +13,7 @@
                 alt="No Cover image available" class="h-80 w-72 object-cover rounded-t-xl" />
         </a>
         <div class="px-4 py-3 w-72">
-            <span class="mr-3 uppercase truncate block font-semibold"><a [routerLink]="['author']">{{ getAuthorsNames(authors) }}</a></span>
+            <span *ngFor="let author of authors" class="mr-3 uppercase truncate block font-semibold"><a class="hover:text-blue-700" [routerLink]="['/authors', author.key.replace('/authors/', '')]">{{ author.name }}</a></span>
             <p class="text-gray-500 mr-3 uppercase text-base">{{publicationYear}}</p>
             <p class="text-xl font-bold text-black truncate block capitalize"><a [routerLink]="['details']">{{ title }}</a></p>
             <div class="flex items-center">

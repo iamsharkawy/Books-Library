@@ -4,6 +4,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { BooksService } from '../services/books.service';
 import { NgIf , NgFor } from '@angular/common';
 import { forkJoin } from 'rxjs';
+import { AuthorBookDetails , Author , BookDetails, EditionResponse , EditionEntrie } from '../models/book.model';
 
 @Component({
   selector: 'app-details',
@@ -15,10 +16,16 @@ import { forkJoin } from 'rxjs';
 export class DetailsComponent implements OnInit {
   route: ActivatedRoute = inject(ActivatedRoute);
   bookKey!: string;
-  bookDetails: any;
-  editionDetails: any[] = [];
-  authors: any[] = [];
-  isLoading = true;
+  bookDetails: BookDetails = {
+    title: '',
+    first_publish_date: '',
+    number_of_pages: 0,
+    covers: undefined,
+    authors: []
+  };
+  editionDetails: EditionEntrie[] = [];
+  authors: Author[] = [];
+  isLoading = false;
   error: any;
 
   constructor(private booksService: BooksService) {
@@ -26,16 +33,17 @@ export class DetailsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.isLoading = true;
     this.getBookDetails();
   }
 
   getBookDetails() {
     this.booksService.getBookDetails(this.bookKey).subscribe(
-      (data) => {
+      (data: BookDetails) => {
         this.bookDetails = data;
         this.getBookEditions();
         this.getAuthorsNames(data.authors);
-        console.log("bookdetaisl" , data);
+        this.isLoading = false;
       },
       (error) => {
         this.error = error;
@@ -46,10 +54,9 @@ export class DetailsComponent implements OnInit {
 
   getBookEditions() {
     this.booksService.getBookEditions(this.bookKey).subscribe(
-      (data) => {
+      (data: EditionResponse) => {
         this.editionDetails = data.entries;
         this.isLoading = false;
-        console.log("bookediton" , data);
       },
       (error) => {
         this.error = error;
@@ -58,16 +65,14 @@ export class DetailsComponent implements OnInit {
     );
   }
 
-  getAuthorsNames(authors: any[]) {
-    const authorObservables = authors.map(author => 
-      this.booksService.getAuthorDetails(author.author.key)
+  getAuthorsNames(authors: AuthorBookDetails[]) {
+    const authorObservables = authors.map(author =>
+      this.booksService.getAuthorDetails(author.author.key.replace('/authors/', ''))
     );
 
     forkJoin(authorObservables).subscribe(
       authorDetailsArray => {
         this.authors = authorDetailsArray
-        console.log(this.authors);
-        
       },
       error => {
         this.error = error;
@@ -76,11 +81,10 @@ export class DetailsComponent implements OnInit {
     );
   }
 
-  getCoverImageUrl(cover_id: string): string {
+  getCoverImageUrl(cover_id: number | null): string {
     if (!cover_id) {
-      return ''; // Return an empty string if no cover ID
+      return '';
     }
-
     return `https://covers.openlibrary.org/b/id/${cover_id}.jpg`;
   }
 }

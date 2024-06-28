@@ -1,31 +1,32 @@
 import { Component, Input, } from '@angular/core';
-import { NgIf } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { Author } from '../../models/book.model';
 
 @Component({
   selector: 'app-card',
   standalone: true,
-  imports: [NgIf, RouterLink],
+  imports: [NgIf, RouterLink ,NgFor],
   templateUrl: './card.component.html',
   styleUrl: './card.component.scss'
 })
 export class CardComponent{
-  @Input() authors: any = []
-  @Input() cover_id!: string
+  @Input() authors: Author[] = []
+  @Input() cover_id?: number | null;
   @Input() publicationYear!: Number
   @Input() title!: string
-  @Input() key!: any
+  @Input() key!: string
 
 
-  getCoverImageUrl(cover_id: string): string {
+  getCoverImageUrl(cover_id?: number | null): string {
     if (!cover_id) {
-      return ''; // Return an empty string if no cover ID
+      return '';
     }
 
     return `https://covers.openlibrary.org/b/id/${cover_id}.jpg`;
   }
 
-  getAuthorsNames(authors: any[]): string {
+  getAuthorsNames(authors: Author[]): string {
     return authors.map(author => author.name).join(', ');
   }
 

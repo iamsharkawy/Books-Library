@@ -1,46 +1,51 @@
-<!-- details.component.html -->
-<p class="key">details comp {{ bookKey }}</p>
-
-<article *ngIf="!isLoading">
-  <img
-    *ngIf="bookDetails.covers && bookDetails.covers.length > 0 && getCoverImageUrl(bookDetails?.covers[0])"
-    class="cover-photo"
-    [src]="getCoverImageUrl(bookDetails.covers[0])"
-    alt="cover photo of {{ bookDetails.title }}"
-  />
-  <img
-    *ngIf="!bookDetails.covers || bookDetails?.covers?.length == 0"
-    class="cover-photo"
-    src="assets/placeholder.jpg"
-    alt="cover photo of {{ bookDetails.title }}"
-  />
-  <section>
-    <h2>{{ bookDetails.title }}</h2>
-  </section>
-  <section>
-    <p class="text-gray-500 mr-3 uppercase text-base">{{bookDetails.first_publish_date}}</p>
-    <div *ngFor="let author of authors">
-      <a [routerLink]="['/authors', author.key.replace('/authors/', '')]">{{author.name}}</a>
-    </div>
-    <!-- <p>Authors: {{ authors.join(', ') }}</p> -->
-    <p>Editions Count: {{ editionDetails.length }}</p>
-    @if(bookDetails && bookDetails.number_of_pages) {
-      <p>
-        No. of Pages: {{ bookDetails.number_of_pages }}
-      </p>
-    }
-    @else if(editionDetails[0] && editionDetails[0]?.number_of_pages) {
-      <p>
-        No. of Pages: {{ editionDetails[0].number_of_pages }}
-      </p>
-    }
-
-  </section>
-  <section>
-    <button type="button">Add / Remove Wishlist</button>
-  </section>
-</article>
-
 <div *ngIf="isLoading">Loading book details...</div>
-
 <div *ngIf="error">Error: {{ error.message }}</div>
+
+
+<section *ngIf="!isLoading">
+  <div>
+    <img
+      *ngIf="bookDetails.covers && bookDetails.covers.length > 0 && getCoverImageUrl(bookDetails.covers[0])"
+      class="cover-photo"
+      [src]="getCoverImageUrl(bookDetails.covers[0])"
+      alt="cover photo of {{ bookDetails.title }}"
+    />
+    <img
+      *ngIf="!bookDetails.covers || (bookDetails.covers && bookDetails.covers.length < 1)"
+      class="cover-photo"
+      src="assets/placeholder.jpg"
+      alt="cover photo of {{ bookDetails.title }}"
+    />
+  </div>
+  <div class="content">
+    <div>
+      <h2>{{ bookDetails.title }}</h2>
+    </div>
+    <div>
+      <p class="text-gray-500 uppercase text-base">{{bookDetails.first_publish_date}}</p>
+      <p *ngFor="let author of authors"><a class="hover:text-blue-700" [routerLink]="['/authors', author.key.replace('/authors/', '')]">{{author.name}}</a></p>
+      <p>Editions Count: {{ editionDetails.length }}</p>
+      <ng-container *ngIf="bookDetails.number_of_pages; else editionPages">
+        <p>No. of Pages: {{ bookDetails.number_of_pages }}</p>
+      </ng-container>
+      <ng-template #editionPages>
+        <p *ngIf="editionDetails[0]?.number_of_pages">No. of Pages: {{ editionDetails[0].number_of_pages }}</p>
+      </ng-template>
+    </div>
+    <div>
+      <button type="button">Add / Remove Wishlist</button>
+    </div>
+  </div>
+</section>
+
+<div *ngIf="isLoading">
+  Loading book details...
+</div>
+
+<div *ngIf="error">
+  Error: {{ error.message }}
+</div>
+
+
+
+

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CardComponent } from './card/card.component';
 import { BooksService } from '../services/books.service';
 import { NgFor, NgIf } from '@angular/common';
+import { Work, BookResponse } from '../models/book.model';
 
 @Component({
   selector: 'app-home',
@@ -10,10 +11,11 @@ import { NgFor, NgIf } from '@angular/common';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent implements OnInit{
-  bookList: any = []
+export class HomeComponent implements OnInit {
+  bookList: Work[] = [];
   isLoading = false;
-  error: any
+  error: any;
+
   constructor(private booksService: BooksService) {}
 
   ngOnInit(): void {
@@ -22,15 +24,15 @@ export class HomeComponent implements OnInit{
   }
 
   getBooks() {
-    this.booksService.getFininanceBooks().subscribe(
-      result => {
-        this.bookList = result;
+    this.booksService.getFinanceBooks().subscribe(
+      (result: BookResponse) => {
+        this.bookList = result.works;
         this.isLoading = false;
-        console.log(result)
-      }, error => {
-        this.error = error
+      },
+      (error: any) => {
+        this.error = error;
         this.isLoading = false;
       }
-    )
+    );
   }
 }

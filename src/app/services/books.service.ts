@@ -1,5 +1,6 @@
 // books.service.ts
 import { HttpClient } from '@angular/common/http';
+import { TmplAstDeferredBlockLoading } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Observable, forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -12,7 +13,7 @@ export class BooksService {
 
   constructor(private http: HttpClient) { }
 
-  getFininanceBooks(): Observable<any> {
+  getFinanceBooks(): Observable<any> {
     return this.http.get(this.baseUrl);
   }
 
@@ -25,6 +26,29 @@ export class BooksService {
   }
 
   getAuthorDetails(authorKey: string): Observable<any> {
-    return this.http.get(`https://openlibrary.org${authorKey}.json`);
+    const authorUrl = `https://openlibrary.org/authors/${authorKey}.json`;
+    const worksUrl = `https://openlibrary.org/authors/${authorKey}/works.json`; // Fetch all works
+
+    return forkJoin({
+      author: this.http.get(authorUrl),
+      works: this.http.get(worksUrl).pipe(
+        map((worksData: any) => worksData.entries)
+      )
+    }).pipe(
+      map((results: any) => {
+        const authorDetails = results.author;
+        const works = results.works;
+        const subjects = works
+          .map((work: any) => work.subjects)
+          .flat()
+          .filter((subject: any) => subject !== undefined)
+          .slice(0, 5); 
+        return {
+          ...authorDetails,
+          worksCount: works.length,
+          topSubjects: subjects
+        };
+      })
+    );
   }
 }
