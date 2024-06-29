@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CardComponent } from './card/card.component';
 import { BooksService } from '../services/books.service';
 import { NgFor, NgIf } from '@angular/common';
@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
   bookList: Work[] = [];
   isLoading = false;
   error: any;
+  @Input() filteredBooks: any[] = [];
 
   constructor(private booksService: BooksService) {}
 
