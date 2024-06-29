@@ -1,3 +1,62 @@
+# Table Of Contents
+- About The Project
+	- Technologies used
+	- file Structure
+- Getting Started
+- Screenshots
+
+
+# About The Project
+> Books-Library is a fully responsive Angular application
+
+## Technologies used
+- Angular
+- Tailwind
+
+
+## File-Structure
+├── .angular
+├── .vscode
+├── node_modules
+├── puplic
+│   ├── assets
+│  │  ├── placeholder.jpg
+│   ├── favicon.ico
+├── src
+│   ├── author
+│   ├── details
+│   ├── footer
+│   ├── header
+│   ├── Home
+│	  │   ├── card
+│   ├── models
+│   ├──search
+│   ├──services
+│   ├── wish-list
+│   ├──app.component.html
+│   ├── app.component.scss
+│   ├──app.component.spec.ts
+│   ├── app.component.ts
+│   ├── app.config.ts
+│   ├──app.routes.ts
+├──index.html
+├──main.ts
+├──styles.scss
+├── .editorconfig
+├── .gitignore
+├── angular.json
+├── package-lock.json
+├── package.jscon
+├── README.md
+├── tailwind.config.js
+├── tsconfig.app.json
+├── tsconfig.json
+├──tsconfig.spec.json
+
+
+
+## Getting Started
+
 # BooksLibrary
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.1.
@@ -25,3 +84,24 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+
+# Screenshots
+
+1- Home
+https://github.com/iamsharkawy/Books-Library/blob/main/screenshots/home.png
+
+2- home responsive
+https://github.com/iamsharkawy/Books-Library/blob/main/screenshots/home-responsive.png
+
+3- book-details
+https://github.com/iamsharkawy/Books-Library/blob/main/screenshots/book-details.png
+
+4- book-details responsive
+https://github.com/iamsharkawy/Books-Library/blob/main/screenshots/book-details-responsive.png
+
+5- author 
+https://github.com/iamsharkawy/Books-Library/blob/main/screenshots/author.png
+
+
+THANK YOU :)
