@@ -1,6 +1,6 @@
 # Table Of Contents
 - About The Project
-	- Technologies used
+	- Languages & Technologies used
 - Getting Started
 - Screenshots
 
@@ -11,6 +11,10 @@
 ## Technologies used
 - Angular
 - Tailwind
+- HTML
+- CSS
+- JAVASCRIPT 
+- TYPESCRIPT
 
 
 
