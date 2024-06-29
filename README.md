@@ -18,7 +18,7 @@
 ├── .angular
 ├── .vscode
 ├── node_modules
-├── puplic
+├── public
 │   ├── assets
 │  │  ├── placeholder.jpg
 │   ├── favicon.ico
@@ -89,19 +89,20 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 # Screenshots
 
 1- Home
-https://github.com/iamsharkawy/Books-Library/blob/main/screenshots/home.png
+![alt text](https://github.com/iamsharkawy/Books-Library/blob/main/screenshots/home.png)
+
 
 2- home responsive
-https://github.com/iamsharkawy/Books-Library/blob/main/screenshots/home-responsive.png
+![alt text](https://github.com/iamsharkawy/Books-Library/blob/main/screenshots/home-responsive.png)
 
 3- book-details
-https://github.com/iamsharkawy/Books-Library/blob/main/screenshots/book-details.png
+![alt text](https://github.com/iamsharkawy/Books-Library/blob/main/screenshots/book-details.png)
 
 4- book-details responsive
-https://github.com/iamsharkawy/Books-Library/blob/main/screenshots/book-details-responsive.png
+![alt text](https://github.com/iamsharkawy/Books-Library/blob/main/screenshots/book-details-responsive.png)
 
 5- author 
-https://github.com/iamsharkawy/Books-Library/blob/main/screenshots/author.png
+![alt text](https://github.com/iamsharkawy/Books-Library/blob/main/screenshots/author.png)
 
 
 THANK YOU :)
