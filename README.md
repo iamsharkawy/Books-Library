@@ -6,7 +6,7 @@
 
 
 # About The Project
-> Books-Library is a fully responsive Angular application
+> Books-Library is a fully responsive Angular application showing book cards with book 📚 info on each card have a book details separate view and have an author view with the author details
 
 ## Technologies used
 - Angular
