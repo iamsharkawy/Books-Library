@@ -5,20 +5,20 @@
 <!-- ✅ Grid Section - Starts Here 👇 -->
 
     <!--   ✅ Product card 1 - Starts Here 👇 -->
-    <div class="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+    <div class="card-item bg-slate-50 shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
         <a [routerLink]="['details', key]">
             <img *ngIf="getCoverImageUrl(cover_id)" [src]="getCoverImageUrl(cover_id)"
-                alt="Product" class="h-80 w-72 object-cover rounded-t-xl" />
+                alt="Product" class=" object-cover rounded-t-xl" />
                 <img *ngIf="!getCoverImageUrl(cover_id)" src="assets/placeholder.jpg"
-                alt="No Cover image available" class="h-80 w-72 object-cover rounded-t-xl" />
+                alt="No Cover image available" class=" object-cover rounded-t-xl" />
         </a>
-        <div class="px-4 py-3 w-72">
-            <span *ngFor="let author of authors" class="mr-3 uppercase truncate block font-semibold"><a class="hover:text-blue-700" [routerLink]="['/authors', author.key.replace('/authors/', '')]">{{ author.name }}</a></span>
-            <p class="text-gray-500 mr-3 uppercase text-base">{{publicationYear}}</p>
-            <p class="text-xl font-bold text-black truncate block capitalize"><a [routerLink]="['details']">{{ title }}</a></p>
-            <div class="flex items-center">
-                <p class="text-lg font-semibold text-black cursor-auto my-3"><a [routerLink]="['details', key]" >More</a></p>
-                <div class="ml-auto font-semibold"><a [routerLink]="['wish-list']">Wish-List</a></div>
+        <div class="px-4 py-3 w-96">
+            <h2 class="text-xl font-bold text-black truncate block capitalize"><a [routerLink]="['details']">{{ title }}</a></h2>
+            <h3 *ngFor="let author of authors" class="uppercase truncate block hover:underline"><a [routerLink]="['/authors', author.key.replace('/authors/', '')]">{{ author.name }}</a></h3>
+            <h3 class="text-gray-500 mr-3 uppercase text-base">{{publicationYear}}</h3>
+            <div class="flex items-center justify-between button-items">
+                <p class="text-lg font-semibold text-black cursor-auto my-2 hover:font-extrabold hover:underline"><a [routerLink]="['details', key]" >Learn-More </a></p>
+                <p class="ml-auto font-semibold text-lg hover:font-extrabold hover:underline"><a [routerLink]="['wish-list']">Wish-List</a></p>
             </div>
         </div>
         </div>

@@ -6,84 +6,114 @@
 // }
 
 
-section {
+// section {
+//   margin: auto;
+//   margin-top: 180px;
+//   display: flex;
+//   align-items: center;
+//   width: 60vw;
+//   height: 700px;
+//   border: 5px black solid;
+//   border-radius: 20px;
+//   padding: 20px;
+//   box-sizing: border-box; /* Ensures padding is included in the width and height */
+// }
+
+// div .cover-photo {
+//   width: 300px;
+//   border-radius: 30px;
+//   background-color: black;
+// }
+
+// .content {
+//   width: 50%;
+//   margin: 20px;
+//   margin-left: 10px;
+// }
+
+// div {
+//   margin: 20px;
+// }
+
+// h2 {
+//   font-size: 45px;
+//   font-weight: bold;
+// }
+
+// p {
+//   font-size: 30px;
+//   font-weight: 600;
+// }
+
+// button {
+//   font-size: 20px;
+//   font-weight: 500;
+//   background-color: crimson;
+//   color: white;
+//   padding: 10px;
+//   border-radius: 20px;
+// }
+
+// @media (max-width: 1024px) {
+//   section {
+//     flex-direction: column;
+//     align-items: center;
+//     height: fit-content;
+//     width: fit-content;
+//     border: none;
+//   }
+
+//   .cover-photo {
+//     width: 100%;
+//     height: 350px;
+//   }
+
+//   .content {
+//     width: 100%;
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+//   }
+
+//   h2 {
+//     font-size: 40px;
+//   }
+
+//   p {
+//     font-size: 20px;
+//   }
+
+//   button {
+//     font-size: 18px;
+//   }
+// }
+
+.image {
+  // width: 50%;
   margin: auto;
-  margin-top: 180px;
-  display: flex;
-  align-items: center;
-  width: 60vw;
-  height: 700px;
-  border: 5px black solid;
-  border-radius: 20px;
-  padding: 20px;
-  box-sizing: border-box; /* Ensures padding is included in the width and height */
 }
 
-div .cover-photo {
-  width: 300px;
-  border-radius: 30px;
-  background-color: black;
-}
-
-.content {
-  width: 50%;
-  margin: 20px;
-  margin-left: 10px;
-}
-
-div {
-  margin: 20px;
-}
-
-h2 {
-  font-size: 45px;
-  font-weight: bold;
-}
-
-p {
-  font-size: 30px;
-  font-weight: 600;
-}
-
-button {
-  font-size: 20px;
-  font-weight: 500;
-  background-color: crimson;
-  color: white;
-  padding: 10px;
-  border-radius: 20px;
+.placeholder {
+  width: 550px;
 }
 
 @media (max-width: 1024px) {
-  section {
-    flex-direction: column;
-    align-items: center;
-    height: fit-content;
-    width: fit-content;
-    border: none;
-  }
-
-  .cover-photo {
-    width: 100%;
-    height: 350px;
-  }
 
   .content {
-    width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    justify-content: center;
   }
 
-  h2 {
-    font-size: 40px;
+  .image {
+    width: 320px;
+    height: 500px;
+
   }
 
-  p {
-    font-size: 20px;
-  }
 
-  button {
-    font-size: 18px;
+  .details {
+    margin-top: 10px;
   }
 }
+

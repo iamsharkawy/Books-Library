@@ -1,7 +1,7 @@
 <div *ngIf="isLoading">Loading author details...</div>
 <div *ngIf="error">Error: {{ error.message }}</div>
 
-<section *ngIf="!isLoading">
+<!-- <section *ngIf="!isLoading">
   <div>
     <img
       *ngIf="authorDetails.photos && authorDetails.photos.length > 0"
@@ -32,4 +32,43 @@
       <button type="button">Add / Remove Wishlist</button>
     </div>
   </div>
-</section>
+</section> -->
+
+<div class="px-2 py-20 w-full flex justify-center">
+  <div class="content bg-white lg:mx-8 lg:flex lg:justify-between lg:max-w-5xl lg:shadow-lg rounded-lg">
+      <div class="lg:w-96 image">
+          <div class="lg:scale-110 h-80 bg-cover lg:h-fit rounded-b-none border lg:rounded-lg">
+            <img
+            *ngIf="authorDetails.photos && authorDetails.photos.length > 0"
+            class="cover-photo"
+            [src]="getCoverImageUrl(authorDetails.photos[0])"
+            alt="photo of {{ authorDetails.name }}"
+          />
+          <img
+            *ngIf="!authorDetails.photos || authorDetails.photos.length < 1"
+            class="cover-photo"
+            src="assets/placeholder.jpg"
+            alt="photo of {{ authorDetails.name }}"
+          />
+          </div>
+      </div>
+      <div class="details py-12 px-6 lg:px-12 max-w-xl lg:max-w-5xl lg:w-1/2 rounded-t-none border lg:rounded-lg">
+          <div class="mb-10">
+            <h2 class="text-3xl text-gray-800 font-bold">
+              {{ authorDetails.name }}
+            </h2>
+            <p class="mt-4 text-gray-600 text-2xl">
+              Birthdate: {{ authorDetails.birth_date }}
+            </p>
+          </div>
+          <div class="text-xl">
+            <p>Works Count: {{ authorDetails.worksCount }}</p>
+            <p>Top Subjects:</p>
+            <ul>
+              <li *ngFor="let subject of authorDetails.topSubjects">{{ subject }}</li>
+            </ul>
+            
+          </div>
+      </div>
+  </div>
+</div>

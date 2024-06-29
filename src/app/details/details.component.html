@@ -2,7 +2,7 @@
 <div *ngIf="error">Error: {{ error.message }}</div>
 
 
-<section *ngIf="!isLoading">
+<!-- <section *ngIf="!isLoading">
   <div>
     <img
       *ngIf="bookDetails.covers && bookDetails.covers.length > 0 && getCoverImageUrl(bookDetails.covers[0])"
@@ -36,15 +36,51 @@
       <button type="button">Add / Remove Wishlist</button>
     </div>
   </div>
-</section>
+</section> -->
 
-<div *ngIf="isLoading">
-  Loading book details...
+<div class="px-2 py-20 w-full flex justify-center">
+  <div class="content bg-white lg:mx-8 lg:flex lg:justify-between lg:max-w-5xl lg:shadow-lg rounded-lg">
+      <div class="lg:w-96 image">
+          <div class="lg:scale-110 h-80 bg-cover lg:h-fit rounded-b-none border lg:rounded-lg">
+            <img
+            *ngIf="bookDetails.covers && bookDetails.covers.length > 0 && getCoverImageUrl(bookDetails.covers[0])"
+            [src]="getCoverImageUrl(bookDetails.covers[0])"
+            alt="cover photo of {{ bookDetails.title }}"
+          />
+          <img
+            *ngIf="!bookDetails.covers || (bookDetails.covers && bookDetails.covers.length < 1)"
+            class="placeholder"
+            src="assets/placeholder.jpg"
+            alt="cover photo of {{ bookDetails.title }}"
+          />
+          </div>
+      </div>
+      <div class="details py-12 px-6 lg:px-12 max-w-xl lg:max-w-5xl lg:w-1/2 rounded-t-none border lg:rounded-lg">
+          <div class="mb-10">
+            <h2 class="text-3xl text-gray-800 font-bold">
+              {{ bookDetails.title }}
+            </h2>
+            <p class="mt-4 text-gray-600 text-2xl">
+              {{bookDetails.first_publish_date}}
+            </p>
+          </div>
+          <div class="text-xl">
+            <p *ngFor="let author of authors"><a [routerLink]="['/authors', author.key.replace('/authors/', '')]">{{author.name}}</a></p>
+            <p>Editions Count: {{ editionDetails.length }}</p>
+            <ng-container *ngIf="bookDetails.number_of_pages; else editionPages">
+              <p>No. of Pages: {{ bookDetails.number_of_pages }}</p>
+            </ng-container>
+            <ng-template #editionPages>
+              <p *ngIf="editionDetails[0]?.number_of_pages">No. of Pages: {{ editionDetails[0].number_of_pages }}</p>
+            </ng-template>
+          </div>
+          <div class="mt-8">
+              <a href="#" class="bg-gray-900 text-gray-100 px-5 py-3 font-semibold rounded">Add / Remove from Wish-List</a>
+          </div>
+      </div>
+  </div>
 </div>
 
-<div *ngIf="error">
-  Error: {{ error.message }}
-</div>
 
 
 
