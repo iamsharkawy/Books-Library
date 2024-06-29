@@ -15,12 +15,13 @@
 
 
 ## File-Structure
+
 ├── .angular
 ├── .vscode
 ├── node_modules
-├── public
+├── puplic
 │   ├── assets
-│  │  ├── placeholder.jpg
+│   │  ├── placeholder.jpg
 │   ├── favicon.ico
 ├── src
 │   ├── author
