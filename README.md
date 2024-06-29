@@ -1,7 +1,6 @@
 # Table Of Contents
 - About The Project
 	- Technologies used
-	- file Structure
 - Getting Started
 - Screenshots
 
@@ -12,47 +11,6 @@
 ## Technologies used
 - Angular
 - Tailwind
-
-
-## File-Structure
-
-├── .angular
-├── .vscode
-├── node_modules
-├── puplic
-│   ├── assets
-│   │  ├── placeholder.jpg
-│   ├── favicon.ico
-├── src
-│   ├── author
-│   ├── details
-│   ├── footer
-│   ├── header
-│   ├── Home
-│	  │   ├── card
-│   ├── models
-│   ├──search
-│   ├──services
-│   ├── wish-list
-│   ├──app.component.html
-│   ├── app.component.scss
-│   ├──app.component.spec.ts
-│   ├── app.component.ts
-│   ├── app.config.ts
-│   ├──app.routes.ts
-├──index.html
-├──main.ts
-├──styles.scss
-├── .editorconfig
-├── .gitignore
-├── angular.json
-├── package-lock.json
-├── package.jscon
-├── README.md
-├── tailwind.config.js
-├── tsconfig.app.json
-├── tsconfig.json
-├──tsconfig.spec.json
 
 
 
