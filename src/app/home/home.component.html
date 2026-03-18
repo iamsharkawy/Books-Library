@@ -1,21 +1,43 @@
-<div class="text-center p-10">
-    <h1 class="font-bold text-4xl mb-4">Books Library</h1>
-    <h1 class="text-3xl">Finance</h1>
+<!-- Modern Hero Section -->
+<div class="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden">
+  <div class="absolute inset-0 z-0">
+    <!-- Decorative background elements -->
+    <div class="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-indigo-100/50 blur-3xl"></div>
+    <div class="absolute top-20 -left-20 w-72 h-72 rounded-full bg-blue-100/50 blur-3xl"></div>
+  </div>
+  
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center animate-fade-in-up">
+    <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6">
+      <span class="block text-slate-900">Discover Your Next</span>
+      <span class="block text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 mt-2">Favorite Book</span>
+    </h1>
+    <p class="mt-4 max-w-2xl text-xl text-slate-600 mx-auto">
+      Explore our curated collection of Finance books. Expand your knowledge and dive into stories that matter.
+    </p>
+  </div>
 </div>
 
-<div *ngIf="isLoading" class="text-center text-3xl">
-    <h2>Loading books...</h2>
-  </div>
-
-  <div *ngIf="error">
-    Error: {{ error.message }}
-  </div>
-
-<section id="Projects"
-    class="w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5">
-
-<div *ngFor="let card of bookList">
-    <app-card [key]="card.key" [title]="card.title" [authors]="card.authors" [publicationYear]="card.first_publish_year" [cover_id]="card.cover_id"/>
+<!-- Loading State -->
+<div *ngIf="isLoading" class="flex flex-col items-center justify-center py-20">
+  <div class="w-16 h-16 border-4 border-indigo-200 border-t-indigo-600 rounded-full animate-spin"></div>
+  <h2 class="mt-6 text-xl font-medium text-slate-700">Loading books...</h2>
 </div>
 
+<!-- Error State -->
+<div *ngIf="error" class="max-w-2xl mx-auto mt-10 p-6 bg-red-50 rounded-2xl border border-red-100 text-center">
+  <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-red-500 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+  </svg>
+  <h3 class="text-lg font-bold text-red-800">Oops, something went wrong</h3>
+  <p class="mt-2 text-red-600">{{ error.message }}</p>
+</div>
+
+<!-- Grid Section -->
+<section *ngIf="!isLoading && !error" id="Projects" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-32">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 justify-items-center">
+    <!-- Component injected cards -->
+    <div *ngFor="let card of bookList" class="w-full max-w-sm">
+      <app-card [key]="card.key" [title]="card.title" [authors]="card.authors" [publicationYear]="card.first_publish_year" [cover_id]="card.cover_id"/>
+    </div>
+  </div>
 </section>

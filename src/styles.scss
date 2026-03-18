@@ -2,3 +2,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Hide the menu checkbox and close buttons by default unless needed */
+  #check {
+    display: none;
+  }
+}

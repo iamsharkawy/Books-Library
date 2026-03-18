@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { CardComponent } from './card/card.component';
+import { CardComponent } from '../home/card/card.component';
 import { BooksService } from '../services/books.service';
 import { NgFor, NgIf } from '@angular/common';
 import { Work, BookResponse } from '../models/book.model';

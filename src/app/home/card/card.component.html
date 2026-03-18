@@ -4,25 +4,72 @@
 
 <!-- ✅ Grid Section - Starts Here 👇 -->
 
-    <!--   ✅ Product card 1 - Starts Here 👇 -->
-    <div class="card-item bg-slate-50 shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
-        <a [routerLink]="['details', key]">
-            <img *ngIf="getCoverImageUrl(cover_id)" [src]="getCoverImageUrl(cover_id)"
-                alt="Product" class=" object-cover rounded-t-xl" />
-                <img *ngIf="!getCoverImageUrl(cover_id)" src="assets/placeholder.jpg"
-                alt="No Cover image available" class=" object-cover rounded-t-xl" />
-        </a>
-        <div class="px-4 py-3 w-96">
-            <h2 class="text-xl font-bold text-black truncate block capitalize"><a [routerLink]="['details']">{{ title }}</a></h2>
-            <h3 *ngFor="let author of authors" class="uppercase truncate block hover:underline"><a [routerLink]="['/authors', author.key.replace('/authors/', '')]">{{ author.name }}</a></h3>
-            <h3 class="text-gray-500 mr-3 uppercase text-base">{{publicationYear}}</h3>
-            <div class="flex items-center justify-between button-items">
-                <p class="text-lg font-semibold text-black cursor-auto my-2 hover:font-extrabold hover:underline"><a [routerLink]="['details', key]" >Learn-More </a></p>
-                <p class="ml-auto font-semibold text-lg hover:font-extrabold hover:underline"><a [routerLink]="['wish-list']">Wish-List</a></p>
+    <!-- Modern Product Card -->
+    <div class="group bg-white rounded-2xl shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 overflow-hidden border border-slate-100 flex flex-col h-full">
+        <!-- Image Container -->
+        <div class="relative aspect-[3/4] overflow-hidden bg-slate-100">
+            <a [routerLink]="['details', key]" class="block w-full h-full">
+                <img *ngIf="getCoverImageUrl(cover_id)" [src]="getCoverImageUrl(cover_id)"
+                    alt="Book Cover" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                <div *ngIf="!getCoverImageUrl(cover_id)" class="w-full h-full flex flex-col items-center justify-center text-slate-400 bg-slate-50">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mb-2 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                    </svg>
+                    <span class="text-sm font-medium">No Cover Array</span>
+                </div>
+            </a>
+            
+            <!-- Floating Wishlist Button -->
+            <button (click)="toggleWishlist($event)" 
+                class="absolute top-4 right-4 p-2.5 rounded-full backdrop-blur-sm shadow-md transition-colors z-10 group/wishlist"
+                [ngClass]="isWishlisted ? 'bg-rose-50 text-rose-500 hover:bg-rose-100' : 'bg-white/90 text-slate-400 hover:text-rose-500 hover:bg-white'">
+                <!-- Outlined Heart (Not Wishlisted) -->
+                <svg *ngIf="!isWishlisted" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                </svg>
+                <!-- Solid Heart (Wishlisted) -->
+                <svg *ngIf="isWishlisted" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-current" viewBox="0 0 24 24">
+                    <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L12 8.343l3.172-3.171a4 4 0 115.656 5.656L12 21.485l-8.828-8.829a4 4 0 010-5.656z" clip-rule="evenodd" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Content Area -->
+        <div class="p-6 flex flex-col flex-grow">
+            <!-- Badges -->
+            <div class="flex items-center gap-2 mb-3">
+                <span class="px-2.5 py-1 text-xs font-semibold text-indigo-700 bg-indigo-50 rounded-full" *ngIf="publicationYear">{{publicationYear}}</span>
+            </div>
+
+            <!-- Title & Author -->
+            <a [routerLink]="['details', key]" class="group-hover:text-indigo-600 transition-colors">
+                <h2 class="text-xl font-bold text-slate-900 line-clamp-2 leading-snug mb-2" [title]="title">{{ title }}</h2>
+            </a>
+            
+            <div class="mt-auto pt-4 flex flex-col gap-1">
+                <p class="text-sm text-slate-500 font-medium.uppercase tracking-wider text-xs">Authored by</p>
+                <div class="flex flex-wrap gap-1">
+                    <ng-container *ngFor="let author of authors; let last = last">
+                        <a [routerLink]="['/authors', author.key.replace('/authors/', '')]" class="text-sm font-medium text-slate-700 hover:text-indigo-600 hover:underline transition-colors line-clamp-1">
+                            {{ author.name }}{{ !last ? ',' : '' }}
+                        </a>
+                    </ng-container>
+                    <span *ngIf="!authors || authors.length === 0" class="text-sm text-slate-400 italic">Unknown Author</span>
+                </div>
+            </div>
+
+            <!-- Action Area -->
+            <div class="mt-6 pt-5 border-t border-slate-100 flex items-center justify-between">
+                <a [routerLink]="['details', key]" class="inline-flex items-center justify-center w-full px-4 py-2.5 text-sm font-semibold text-white bg-indigo-600 rounded-xl hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-100 transition-all">
+                    <span>Read Details</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                </a>
             </div>
         </div>
-        </div>
-    <!--   🛑 Product card 1 - Ends Here  -->
+    </div>
+    <!-- 🛑 Modern Product Card -->
 
 
 
