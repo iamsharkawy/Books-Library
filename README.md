@@ -49,23 +49,4 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
 
 
-# Screenshots
-
-1- Home
-![alt text](https://github.com/iamsharkawy/Books-Library/blob/main/screenshots/home.png)
-
-
-2- home responsive
-![alt text](https://github.com/iamsharkawy/Books-Library/blob/main/screenshots/home-responsive.png)
-
-3- book-details
-![alt text](https://github.com/iamsharkawy/Books-Library/blob/main/screenshots/book-details.png)
-
-4- book-details responsive
-![alt text](https://github.com/iamsharkawy/Books-Library/blob/main/screenshots/book-details-responsive.png)
-
-5- author 
-![alt text](https://github.com/iamsharkawy/Books-Library/blob/main/screenshots/author.png)
-
-
 THANK YOU :)
